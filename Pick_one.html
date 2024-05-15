@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pick one!</title>
+    <meta charset="UTF-8">
+    <style>
+
+	body {
+	background: white;
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	}
+
+        .center {
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+        .thumbnail { 
+	top:-50px; 
+	left:-35px; 
+	display:block; 
+	z-index:999; 
+	cursor: pointer; 
+	-webkit-transition-property: all; 
+	-webkit-transition-duration: 0.3s; 
+	-webkit-transition-timing-function: ease; 
+	} 
+
+	.thumbnail:hover { 
+	transform: scale(1.05); 
+	}
+
+	h1 {
+	text-align: center;
+	text-shadow: 2px 2px 4px #000000;
+	}
+
+	div {
+	text-align: center;
+	justify-content: center;
+	}
+	
+	img {
+  	box-shadow: 3px 3px 3px lightblue;
+	}
+
+	.footer {
+	clear: both;
+	text-align: center;
+	color: #888;
+	padding: 10px 0 10px;
+	}
+
+	a:link {
+        color: green;
+     	background-color: transparent;
+  	text-decoration: none;
+	}
+
+	a:visited {
+  	color: pink;
+  	background-color: transparent;
+  	text-decoration: none;
+	}
+
+	a:hover {
+  	color: red;
+  	background-color: transparent;
+  	text-decoration: underline;
+	}
+
+	a:active {
+  	color: yellow;
+  	background-color: transparent;
+  	text-decoration: underline;
+	}
+
+     .image {
+       position: relative;
+       width: 122px;
+     }
+
+     .image__img {
+       display: block;
+       width: 100%;
+     }
+
+     .image__overlay {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: rgba(0, 0, 0, 0.6);
+       color: #ffffff;
+       font-family: 'Quicksand', sans-serif;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       opacity: 0;
+       transition: opacity 0.25s;
+     }
+
+     .image__overlay > * {
+       transform: translateY(20px);
+       transition: transform 0.25s;
+     }
+
+     .image__overlay:hover {
+       opacity: 1;
+     }
+
+     .image__overlay:hover > * {
+       transform: translateY(0);
+     }
+
+     .image__title {
+       font-size: 2em;
+       font-weight: bold;
+     }
+
+    </style>
+  </head>
+  <body>
+    <h1>MyLivingDex.com</h1>
+    <div>
+      <table class="center">
+        <tr>
+
+          <td><a href="./Red_Blue_Living_Dex.html">
+          <img src="./images/redversionbox.png" class="thumbnail" alt="Pokémon Red Version" height="99" ></a></td>
+
+          <td><a href="./Red_Blue_Living_Dex.html">
+          <img src="./images/blueversionbox.png" class="thumbnail" alt="Pokémon Blue Version" height="99" ></a></td>
+
+          <td><a href="./Yellow_Living_Dex.html">
+          <img src="./images/yellowversionbox.png" class="thumbnail" alt="Pokémon Yellow Version" height="99" ></a></td>
+
+          <td><a href="./Gold_Living_Dex.html">
+          <img src="./images/goldversionbox.png" class="thumbnail" alt="Pokémon Gold Version" height="99" ></a></td>
+
+          <td><a href="./Silver_Living_Dex.html">
+          <img src="./images/silverversionbox.png" class="thumbnail" alt="Pokémon Silver Version" height="99" ></a></td>
+
+          <td><a href="./Crystal_Living_Dex.html">
+          <img src="./images/crystalversionbox.png" class="thumbnail" alt="Pokémon Crystal Version" height="99" ></a></td>
+
+          <td>
+            <div class="image">
+              <img src="./images/RubyVersionBox.png" class="image__img" alt="Pokémon Ruby Version" width="99" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+          
+          <td>
+            <div class="image">
+              <img src="./images/SapphireVersionBox.png" class="image__img" alt="Pokémon Sapphire Version" width="99" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/FireRedVersionBox.png" class="image__img" alt="Pokémon FireRed Version" width="99" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/LeafGreenVersionBox.png" class="image__img" alt="Pokémon LeafGreen Version" width="99" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/EmeraldVersionBox.png" class="image__img" alt="Pokémon Emerald Version" width="99" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+      </table>
+      <table class="center">
+        <tr>
+
+          <td>
+            <div class="image">
+              <img src="./images/DiamondVersionBox.png" class="image__img" alt="Pokémon Diamond Version" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/PearlVersionBox.png" class="image__img" alt="Pokémon Pearl Version" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/PlatinumVersionBox.png" class="image__img" alt="Pokémon platinum Version" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/HeartgoldVersionBox.png" class="image__img" alt="Pokémon HeartGold Version" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/SoulSilverVersionBox.png" class="image__img" alt="Pokémon SoulSilver Version" width="121" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/BlackVersionBox.png" class="image__img" alt="Pokémon Black Version" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/WhiteVersionBox.png" class="image__img" alt="Pokémon White Version" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/Black2.png" class="image__img" alt="Pokémon Black 2 Version" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/White2.png" class="image__img" alt="Pokémon White 2 Version" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+      </table>
+      <table class="center">
+        <tr>
+
+          <td>
+            <div class="image">
+              <img src="./images/xbox.png" class="image__img" alt="Pokémon X" width="125" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/ybox.png" class="image__img" alt="Pokémon Y" width="124" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/omegabox.png" class="image__img" alt="Pokémon Omega Ruby" width="125" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/alphabox.png" class="image__img" alt="Pokémon Alpha Sapphire" width="125" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/Sun.png" class="image__img" alt="Pokémon Sun" width="124" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/Moon.png" class="image__img" alt="Pokémon Moon" width="124" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/ultrasun.png" class="image__img" alt="Pokémon Ultra Sun" width="124" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/ultramoon.png" class="image__img" alt="Pokémon Ultra Moon" width="125" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+      </table>
+      <table class="center">
+        <tr>
+
+          <td>
+            <div class="image">
+              <img src="./images/LGP.png" class="image__img" alt="Pokémon Let's Go Pikachu" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/LGE.png" class="image__img" alt="Pokémon Let's Go Eevee" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/Sword.png" class="image__img" alt="Pokémon Sword" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/Shield.png" class="image__img" alt="Pokémon Shield" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/BD.png" class="image__img" alt="Pokémon Brilliant Diamond" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/SP.png" class="image__img" alt="Pokémon Shining Pearl" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/PLA.png" class="image__img" alt="Pokémon Legends Arceus" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+          
+	        <td>
+            <div class="image">
+              <img src="./images/Scarlet.png" class="image__img" alt="Pokémon Scarlet" width="122" >
+              <div class="image__overlay">
+                <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="image">
+              <img src="./images/Violet.png" class="image__img" alt="Pokémon Violet" width="122" >
+              <div class="image__overlay">
+	              <div class="image__title">Coming Soon</div>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+      </table>
+    </div>
+
+    <div class="footer">
+      <p>
+        <small>
+          <a href="/privacy">Privacy</a>
+          |
+          <a href="/credits">Credits</a>
+          | 
+          <a href="/contact">Contact</a>
+          |
+          Pokémon © 2002-2024 Pokémon. © 1995-2024 Nintendo/Creatures Inc./GAME FREAK inc. TM, ® and Pokémon character names are trademarks of Nintendo.
+        </small>
+      </p>
+    </div>
+
+  </body>
+</html>
