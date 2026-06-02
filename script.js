@@ -5,10 +5,14 @@ let headers = [];
 let toggleState = {
     mega: false,
     excludeAlternates: false,
+    excludeAestheticForms: false,
     region: false,
-    generation: null
+    generation: null,
+    excludeFormTypes: [] // manually exclude any Form Type values, e.g. ['1','2']
 };
 
+// parseCsv: convert raw CSV text into a header array and an array of row objects.
+// This is a light parser for simple CSV data with no embedded commas or quoted fields.
 function parseCsv(text) {
     const lines = text.trim().split('\n').filter(Boolean);
     if (lines.length <= 1) return { headers: [], rows: [] };
@@ -25,6 +29,7 @@ function parseCsv(text) {
     return { headers: parsedHeaders, rows };
 }
 
+// loadCsv: fetch the CSV file and parse it into structured data.
 function loadCsv(url) {
     return fetch(url)
         .then(response => {
@@ -34,6 +39,7 @@ function loadCsv(url) {
         .then(parseCsv);
 }
 
+// matchesSearch: check whether the row matches every active text filter.
 function matchesSearch(row) {
     if (activeFilters.length === 0) return true;
 
@@ -44,13 +50,22 @@ function matchesSearch(row) {
     );
 }
 
+// matchesToggleFilters: apply the on/off toggle filters to each row.
 function matchesToggleFilters(row) {
     if (toggleState.mega && getField(row, 'Mega_Evolution_Flag', 'Mega Flag', 'Mega') !== 'Mega') {
         return false;
     }
 
-    const alternateFlag = getField(row, 'Alternate_Form_Flag', 'AlternateFormFlag', 'Alternate_Form', 'Is_Alternate_Form', 'Redundant_Form_Flag');
-    if (toggleState.excludeAlternates && String(alternateFlag) === '1') {
+    const formType = getField(row, 'Form Type', 'Form_Type', 'FormType');
+    if (toggleState.excludeAlternates && String(formType) === '1') {
+        return false;
+    }
+
+    if (toggleState.excludeAestheticForms && String(formType) === '2') {
+        return false;
+    }
+
+    if (toggleState.excludeFormTypes.length > 0 && toggleState.excludeFormTypes.map(String).includes(String(formType))) {
         return false;
     }
 
@@ -134,6 +149,28 @@ function renderToggleFilters() {
     });
     container.appendChild(regionBtn);
 
+    const excludeAltFormsBtn = document.createElement('button');
+    excludeAltFormsBtn.type = 'button';
+    excludeAltFormsBtn.className = `toggle-chip${toggleState.excludeAlternates ? ' active' : ''}`;
+    excludeAltFormsBtn.textContent = 'Hide alternate forms';
+    excludeAltFormsBtn.addEventListener('click', () => {
+        toggleState.excludeAlternates = !toggleState.excludeAlternates;
+        renderToggleFilters();
+        updateList();
+    });
+    container.appendChild(excludeAltFormsBtn);
+
+    const excludeAestheticBtn = document.createElement('button');
+    excludeAestheticBtn.type = 'button';
+    excludeAestheticBtn.className = `toggle-chip${toggleState.excludeAestheticForms ? ' active' : ''}`;
+    excludeAestheticBtn.textContent = 'Hide redundant forms';
+    excludeAestheticBtn.addEventListener('click', () => {
+        toggleState.excludeAestheticForms = !toggleState.excludeAestheticForms;
+        renderToggleFilters();
+        updateList();
+    });
+    container.appendChild(excludeAestheticBtn);
+
     const generationValues = [...new Set(allRows.map(row => row.Generation).filter(Boolean))].sort((a, b) => Number(a) - Number(b));
 
     generationValues.forEach(value => {
@@ -150,6 +187,7 @@ function renderToggleFilters() {
     });
 }
 
+// getField: helper to read the first non-empty field from a list of possible column names.
 function getField(row, ...candidates) {
     for (const key of candidates) {
         if (row[key] !== undefined && row[key] !== null && String(row[key]).trim() !== '') {
@@ -159,6 +197,7 @@ function getField(row, ...candidates) {
     return '';
 }
 
+// getSecondaryText: build line 2 text for a Pokémon tile based on region, form, and Mega state.
 function getSecondaryText(row) {
     const details = [];
 
@@ -181,6 +220,7 @@ function getSecondaryText(row) {
     return details.join(' ');
 }
 
+// renderList: create the visible list of Pokémon filtered by the current search and toggles.
 function renderList(rows) {
     const container = document.getElementById('pokemonList');
     container.innerHTML = '';
@@ -194,16 +234,21 @@ function renderList(rows) {
     }
 
     rows.forEach(row => {
-        const branchCode = row.Branch_Code || '';
-        const primaryName = row.Original_Name || row.Name || 'Unknown';
+        const primaryName = getField(row, 'Name', 'Original_Name', 'Display Name', 'Pokemon Name') || 'Unknown';
         const secondaryText = getSecondaryText(row);
 
         const button = document.createElement('button');
         button.className = 'pokemon-button';
 
-        if (branchCode) {
+        if (primaryName !== 'Unknown') {
+            const fileName = primaryName
+                .trim()
+                .replace(/[‘’']/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/[^A-Za-z0-9-]/g, '')
+                .toLowerCase();
             const img = document.createElement('img');
-            img.src = `images/${branchCode}.png`;
+            img.src = `images/${encodeURIComponent(fileName)}.png`;
             img.alt = primaryName;
             img.className = 'pokemon-thumb';
             img.onerror = () => {

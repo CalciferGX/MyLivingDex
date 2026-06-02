@@ -1,3 +1,14 @@
+/* Styles for the PokéCoach UI. */
+/* HTML elements are populated by script.js from the CSV data. */
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #fff;
+    padding: 10px 0 8px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
 .filter-tag {
     display: inline-flex;
     align-items: center;
