@@ -8,14 +8,18 @@
 </head>
 <body>
 
-    <h1>PokéCoach</h1>
+    <!-- App header and toolbar are rendered statically in HTML. -->
+    <!-- Dynamic content is populated by script.js after loading data.csv. -->
+    <div class="sticky-top">
+        <h1>PokéCoach</h1>
 
-    <div class="toolbar">
-        <input id="filterInput" placeholder="Enter a filter...">
-        <div id="toggleFilters" class="toggle-filters"></div>
+        <div class="toolbar">
+            <input id="filterInput" placeholder="Enter a filter...">
+            <div id="toggleFilters" class="toggle-filters"></div>
+        </div>
+
+        <div id="activeFilters"></div>
     </div>
-
-    <div id="activeFilters"></div>
 
     <div id="pokemonList"></div>
 
